@@ -7,7 +7,7 @@ import org.json.simple.parser.JSONParser;
 
 public class TestScrap {
 	
-    private static final String url = "jdbc:mysql://localhost/PokemonDB";
+    private static final String url = "jdbc:mysql://localhost/PokemonDB?autoReconnect=true&useSSL=false";
     
     private static final String user = "root";
  
