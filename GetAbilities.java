@@ -18,7 +18,7 @@ public class GetAbilities {
 
 
 	
-	private static final String url = "jdbc:mysql://localhost/PokemonDB";
+	private static final String url = "jdbc:mysql://localhost/PokemonDB?autoReconnect=true&useSSL=false";
     
     private static final String user = "root";
  
