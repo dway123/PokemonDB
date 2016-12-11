@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<meta charset="utf-8"/>
+<html>
+<head>
+<title>Pokemon Database</title>
+<link rel="stylesheet" type="text/css" href="pstyle.css" />
+</head>
+<body>
+<div class="title">
+<h1>Welcome to the Pokemon Database!</h1>
+</div>
+<div class="menu">
+<ul>
+	<li><img class="pball" src="pokeball.png"></img></li>
+	<li class="menuitem"><a href="table.html">Pokemon</a></li>
+	<li class="menuitem"><a href="pokemon.html">Moves</a></li>
+	<li class="menuitem"><a href="pokemon.html">Types</a></li>
+	<li><img class="pball" src="pokeball.png"></img></li>
+</ul>
+</div>
+
+<table id="ptable">
+  <tr>
+    <th>#</th>
+    <th>Pokemon</th>
+    <th>Type</th>
+  </tr>
+<!--  <tr>
+    <td></td>
+    <td>Bob</td>
+    <td>Trains</td>
+  </tr>-->
+</table>
+
+<script>
+var Pokemon = {"pokemon": [
+	{"Name" : "Bulbasaur", "type1":"Grass", "type2":"Poison",
+	"move1": "Leaf Blade", "move2" : "Cross Poison", "move3" : "Wood Hammer", "move4" : "Vine Whip"},
+	{"Name" : "Pikachu", "type1": "Electric", "type2": null,
+        "move1": "Nuzzle", "move2": "Thunderbolt", "move3": "Volt Tackle","move4" : "Nasty Plot"}
+    ]
+};
+console.log(Pokemon);
+for(var i = 0; i<Pokemon.pokemon.length; i++){
+	var entr = document.createElement("tr");
+	entr.setAttribute("id","pentry"+i+"");
+	document.getElementById("ptable").appendChild(entr);
+	var num = document.createElement("td");
+	num.setAttribute("id","pnum"+i+"");
+	document.getElementById("pentry"+i+"").appendChild(num);
+	document.getElementById("pnum"+i+"").innerHTML = i+1;
+	var nam = document.createElement("td");
+	nam.setAttribute("id","pname"+i+"");
+	document.getElementById("pentry"+i+"").appendChild(nam);
+	document.getElementById("pname"+i+"").innerHTML = Pokemon.pokemon[i].Name;
+	var type = document.createElement("td");
+	type.setAttribute("id","ptype"+i+"");
+	document.getElementById("pentry"+i+"").appendChild(type);
+	if(Pokemon.pokemon[i].type2!=null){
+		document.getElementById("ptype"+i+"").innerHTML = Pokemon.pokemon[i].type1 + "/" + Pokemon.pokemon[i].type2;
+	}
+	else{
+		document.getElementById("ptype"+i+"").innerHTML = Pokemon.pokemon[i].type1;
+	}
+}
+</script>
+
+</body>
+</html>

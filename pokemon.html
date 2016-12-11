@@ -9,16 +9,18 @@
 <div class="title">
 <h1>Welcome to the Pokemon Database!</h1>
 </div>
-<div class="Menu">
+<div class="menu">
 <ul>
-	<li><a class="fl" href="pokemon.html">Pokemon</a></li>
-	<li><a class="fm" href="pokemon.html">Moves</a></li>
-	<li><a class="fr" href="pokemon.html">Types</a></li>
+	<li><img class="pball" src="pokeball.png"></img></li>
+	<li class="menuitem"><a href="table.html">Pokemon</a></li>
+	<li class="menuitem"><a href="pokemon.html">Moves</a></li>
+	<li class="menuitem"><a href="pokemon.html">Types</a></li>
+	<li><img class="pball" src="pokeball.png"></img></li>
 </ul>
 </div>
-<p id="pokemon"></p>
-
-<script>
+<!--<p id="pokemon"></p>-->
+<!-- Example Script: -->
+<!--<script>
 var Pokemon = {"pokemon": [
 	{"Name" : "Bulbasaur", "type1":"Grass", "type2":"Poison",
 	"move1": "Leaf Blade", "move2" : "Cross Poison", "move3" : "Wood Hammer", "move4" : "Vine Whip"},
@@ -30,6 +32,7 @@ var str = JSON.stringify(Pokemon);
 console.log(Pokemon);
 document.getElementById("pokemon").innerHTML = Pokemon.pokemon[0].Name;
 </script>
+-->
 <noscript>Sorry, your browser does not support JavaScript!</noscript>
 </body>
 </html>

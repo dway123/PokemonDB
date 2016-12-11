@@ -1,18 +1,25 @@
 body {
 font-family: Helvetica, sans-serif;
 font-size: 2em;
-background-color: black;
+background-color: gray;
 }
 .title {
 text-align: center;
 color: blue;
+margin:0;
+padding:0px 0px;
 }
 .menu {
+display:block;
 background-color: red;
 overflow: hidden;
 font-size: 1em;
 clear: both;
 padding: 0px 40px;
+}
+.pball{
+width: 30px;
+height: 30px;
 }
 ul{
 display:block;
@@ -28,8 +35,19 @@ li a{
 color: white;
 text-decoration: none;
 }
-li:hover {
-background-color: blue;
+.menuitem:hover {
+background-color: #b30000;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
 }
 #pokemon {
 color: yellow;
