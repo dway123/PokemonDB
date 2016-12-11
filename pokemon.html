@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<meta charset="utf-8"/>
 <html>
 <head>
 <title>Pokemon Database</title>
@@ -12,8 +14,22 @@
 	<li><a class="fl" href="pokemon.html">Pokemon</a></li>
 	<li><a class="fm" href="pokemon.html">Moves</a></li>
 	<li><a class="fr" href="pokemon.html">Types</a></li>
-
 </ul>
 </div>
+<p id="pokemon"></p>
+
+<script>
+var Pokemon = {"pokemon": [
+	{"Name" : "Bulbasaur", "type1":"Grass", "type2":"Poison",
+	"move1": "Leaf Blade", "move2" : "Cross Poison", "move3" : "Wood Hammer", "move4" : "Vine Whip"},
+	{"Name" : "Pikachu", "type1": "Electric", "type2": null,
+        "move1": "Nuzzle", "move2": "Thunderbolt", "move3": "Volt Tackle","move4" : "Nasty Plot"}
+    ]
+};
+var str = JSON.stringify(Pokemon);
+console.log(Pokemon);
+document.getElementById("pokemon").innerHTML = Pokemon.pokemon[0].Name;
+</script>
+<noscript>Sorry, your browser does not support JavaScript!</noscript>
 </body>
 </html>

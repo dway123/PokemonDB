@@ -31,4 +31,7 @@ text-decoration: none;
 li:hover {
 background-color: blue;
 }
-
+#pokemon {
+color: yellow;
+font-size: 1em;
+}
