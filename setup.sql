@@ -47,8 +47,8 @@ CREATE TABLE IF NOT EXISTS Moves
 	mname CHAR(20) UNIQUE NOT NULL,
 	description CHAR(200) NOT NULL,
 	category INTEGER NOT NULL,
-	power INTEGER NOT NULL,
-	accuracy INTEGER NOT NULL,
+	power INTEGER,
+	accuracy INTEGER,
 	PRIMARY KEY (moveid) 
 );
 
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS Abilities
 (
 	abilityid INTEGER AUTO_INCREMENT,
 	aname CHAR(20) UNIQUE NOT NULL,
-	effect CHAR(200) NOT NULL,
+	effect VARCHAR(200) NOT NULL,
 	PRIMARY KEY (abilityid)
 );
 
