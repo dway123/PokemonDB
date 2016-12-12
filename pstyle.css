@@ -58,6 +58,10 @@ margin: 3%;
 margin-left: 5%;
 margin-right: 5%;
 }
+a{
+text-decoration: none;
+color:black;
+}
 li a{
 color: white;
 text-decoration: none;
@@ -76,6 +80,7 @@ td, th {
     padding: 8px;
 }
 #pokemon {
-color: yellow;
+color: black;
 font-size: 1em;
+font-family: Arial, sans-serif;
 }

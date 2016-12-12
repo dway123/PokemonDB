@@ -13,7 +13,7 @@
 <ul>
 	<li><img class="pball" src="pokeball.png"></img></li>
 	<li class="menuitem"><a href="table.html">Pokemon</a></li>
-	<li class="menuitem"><a href="pokemon.html">Moves</a></li>
+	<li class="menuitem"><a href="table2.html">Moves</a></li>
 	<li class="menuitem"><a href="pokemon.html">Types</a></li>
 	<li><img class="pball" src="pokeball.png"></img></li>
 </ul>
@@ -22,23 +22,39 @@
 <form>
   <input type="text" name="search" placeholder="Search..">
 </form>
-
-<!--<p id="pokemon"></p>-->
-<!-- Example Script: -->
-<!--<script>
+<p id="pokemon"></p>
+<p id="info"></p>
+</div>
+<!-- Main Script: -->
+<script>
 var Pokemon = {"pokemon": [
-	{"Name" : "Bulbasaur", "type1":"Grass", "type2":"Poison",
-	"move1": "Leaf Blade", "move2" : "Cross Poison", "move3" : "Wood Hammer", "move4" : "Vine Whip"},
-	{"Name" : "Pikachu", "type1": "Electric", "type2": null,
-        "move1": "Nuzzle", "move2": "Thunderbolt", "move3": "Volt Tackle","move4" : "Nasty Plot"}
+	{"No":1,"Name" : "Bulbasaur", "type1":"Grass", "type2":"Poison", "Ability":"Wonder Guard"
+	/*,"move1": "Leaf Blade", "move2" : "Cross Poison", "move3" : "Wood Hammer", "move4" : "Vine Whip"*/},
+	{"No":35,"Name" : "Pikachu", "type1": "Electric", "type2": null, "Ability":"Static"
+        /*,"move1": "Nuzzle", "move2": "Thunderbolt", "move3": "Volt Tackle","move4" : "Nasty Plot"*/}
     ]
 };
-var str = JSON.stringify(Pokemon);
+/*var str = JSON.stringify(Pokemon);
 console.log(Pokemon);
-document.getElementById("pokemon").innerHTML = Pokemon.pokemon[0].Name;
+document.getElementById("pokemon").innerHTML = Pokemon.pokemon[0].Name;*/
+var num = -1;
+if(sessionStorage.pokemon!=null){
+	num = sessionStorage.pokemon;
+	var poke = Pokemon.pokemon[num];
+	document.getElementById("pokemon").innerHTML = "No."+poke.No+": "+poke.Name + "\n";
+	var strinfo = "";
+	if(poke.type2!=null){
+		strinfo = strinfo+"Type: "+poke.type1 + "/" + poke.type2+"<br>";
+	}
+	else{
+		strinfo = strinfo+"Type: "+poke.type1+"<br>";
+	}
+	strinfo = strinfo + "Ability: "+poke.Ability+"<br><br>"+poke.Name+" is a lovely pokemon. It is not, however, Mega Rayquaza.";
+	document.getElementById("info").innerHTML = strinfo;
+	
+}
 </script>
--->
+
 <noscript>Sorry, your browser does not support JavaScript!</noscript>
-</div>
 </body>
 </html>

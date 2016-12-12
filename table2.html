@@ -26,9 +26,10 @@
 <table id="ptable">
   <tr>
     <th>#</th>
-    <th>Pokemon</th>
+    <th>Move</th>
     <th>Type</th>
-    <th>Ability</th>
+    <th>Power</th>
+    <th>Accuracy</th>
   </tr>
 <!--  <tr>
     <td></td>
@@ -38,45 +39,49 @@
 </table>
 
 <script>
-var Pokemon = {"pokemon": [
-	{"No":1,"Name" : "Bulbasaur", "type1":"Grass", "type2":"Poison", "Ability":"Wonder Guard"
+var Move = {"move": [
+	{"No":1,"Name" : "Hyper Beam", "type":"Normal", "BP":150, "Accuracy":90
 	/*,"move1": "Leaf Blade", "move2" : "Cross Poison", "move3" : "Wood Hammer", "move4" : "Vine Whip"*/},
-	{"No":35,"Name" : "Pikachu", "type1": "Electric", "type2": null, "Ability":"Static"
+	{"No":2,"Name" : "Hypnosis", "type": "Psychic", "BP": null, "Accuracy":60
         /*,"move1": "Nuzzle", "move2": "Thunderbolt", "move3": "Volt Tackle","move4" : "Nasty Plot"*/}
     ]
 };
-console.log(Pokemon);
-for(var i = 0; i<Pokemon.pokemon.length; i++){
+console.log(Move);
+for(var i = 0; i<Move.move.length; i++){
 	var entr = document.createElement("tr");
 	document.getElementById("ptable").appendChild(entr);
 
 	var num = document.createElement("td");
 	entr.appendChild(num);
-	num.innerHTML = Pokemon.pokemon[i].No;
+	num.innerHTML = Move.move[i].No;
 
 	var nam = document.createElement("td");
 	entr.appendChild(nam);
-	var link = document.createElement("a");
-	link.setAttribute("href","pokemon.html");
-	link.setAttribute("onclick","pokemon("+i+");");
-	nam.appendChild(link);
-	link.innerHTML = Pokemon.pokemon[i].Name;
+	nam.innerHTML = Move.move[i].Name;
 
 	var type = document.createElement("td");
 	entr.appendChild(type);
-	if(Pokemon.pokemon[i].type2!=null){
-		type.innerHTML = Pokemon.pokemon[i].type1 + "/" + Pokemon.pokemon[i].type2;
+	type.innerHTML = Move.move[i].type;
+
+	var power = document.createElement("td");
+	entr.appendChild(power);
+	if(Move.move[i].BP!=null){
+		power.innerHTML = Move.move[i].BP;
 	}
 	else{
-		type.innerHTML = Pokemon.pokemon[i].type1;
+		power.innerHTML = "-";
 	}
-	var abl = document.createElement("td");
-	num.setAttribute("id","pabl"+i+"");
-	entr.appendChild(abl);
-	abl.innerHTML = Pokemon.pokemon[i].Ability;
-}
-function pokemon(num){
-	sessionStorage.pokemon = num;
+
+	var acc = document.createElement("td");
+	entr.appendChild(acc);
+	if(Move.move[i].Accuracy!=null){
+		acc.innerHTML = Move.move[i].Accuracy;
+	}
+	else{
+		acc.innerHTML = "-";
+	}
+
+	
 }
 </script>
 </div>
