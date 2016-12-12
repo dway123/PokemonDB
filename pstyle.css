@@ -1,13 +1,22 @@
 body {
-font-family: Helvetica, sans-serif;
-font-size: 2em;
+font-family: Symbol, sans-serif;
+font-size: 1.8em;
 background-color: gray;
+margin-left: 3%;
+margin-right: 3%;
+}
+.main{
+background-color: #f2f2f2;
+}
+h1{
+margin:0;
+padding:2% 2%;
+
 }
 .title {
 text-align: center;
-color: blue;
-margin:0;
-padding:0px 0px;
+color: #3399ff;
+background-color: #1a1a1a;
 }
 .menu {
 display:block;
@@ -18,18 +27,36 @@ clear: both;
 padding: 0px 40px;
 }
 .pball{
-width: 30px;
-height: 30px;
+width: 2%;
+height: 2%;
 }
+form{
+float:right;
+}
+.input[type=text] {
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+/* When the input field gets focus, change its width to 100% */
+input[type=text]:focus {
+    width: 100%;
+}
+
 ul{
 display:block;
 list-style-type: none;
 margin: 0; 
-padding: 25px 0px;
+padding: 25px 10%;
 }
 li {
 display: inline;
-padding: 25px 50px;
+/*padding: 25px 50px;*/
+padding: 10% 1%;
+margin: 3%;
+margin-left: 5%;
+margin-right: 5%;
 }
 li a{
 color: white;
@@ -43,9 +70,8 @@ table {
     border-collapse: collapse;
     width: 100%;
 }
-
 td, th {
-    border: 1px solid #dddddd;
+    border: 1px solid #000000;
     text-align: left;
     padding: 8px;
 }
