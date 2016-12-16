@@ -24,7 +24,7 @@ background-color: red;
 overflow: hidden;
 font-size: 1em;
 clear: both;
-padding: 0px 40px;
+padding: 0px 35px;
 }
 .pball{
 width: 2%;
@@ -55,8 +55,8 @@ display: inline;
 /*padding: 25px 50px;*/
 padding: 10% 1%;
 margin: 3%;
-margin-left: 5%;
-margin-right: 5%;
+margin-left: 4%;
+margin-right: 4%;
 }
 a{
 text-decoration: none;
