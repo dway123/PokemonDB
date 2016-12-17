@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<meta charset="utf-8"/>
+<html>
+<head>
+<title>Pokemon Database</title>
+<link rel="stylesheet" type="text/css" href="pstyle.css" />
+</head>
+<body>
+<div class="title">
+<h1>Welcome to the Pokemon Database!</h1>
+</div>
+<div class="menu">
+<ul>
+	<li><img class="pball" src="pokeball.png"></img></li>
+	<li class="menuitem"><a href="table.html">Pokemon</a></li>
+	<li class="menuitem"><a href="table2.html">Moves</a></li>
+	<li class="menuitem"><a href="table3.html">Episodes</a></li>
+	<li><img class="pball" src="pokeball.png"></img></li>
+</ul>
+</div>
+<div class="main">
+<form>
+  <input type="text" name="search" placeholder="Search..">
+</form>
+<p id="move"></p>
+<p id="info"></p>
+</div>
+<!-- Main Script: -->
+<script>
+var Move = {"move": [
+	{"No":1,"Name" : "Hyper Beam", "type":"Normal", "BP":150, "Accuracy":90, "Description":"deals special damage. The user cannot move on the next turn"},
+	{"No":2,"Name" : "Hypnosis", "type": "Psychic", "BP": null, "Accuracy":60, "Description":"will make the target falls asleep."},
+	{"No":3,"Name" : "Aerial Ace", "type": "Flying", "BP":60, "Accuracy": null, "Description":"is a flying-type move that always hits."}
+    ]
+};
+/*var str = JSON.stringify(Move);
+console.log(Move);
+document.getElementById("move").innerHTML = Move.move[0].Name;*/
+var num = -1;
+if(sessionStorage.move!=null){
+	num = sessionStorage.move;
+	var mov = Move.move[num];
+	document.getElementById("move").innerHTML = "No."+mov.No+": "+mov.Name + "\n";
+	var strinfo = "";
+	if(mov.BP!=null){
+		strinfo = strinfo+"Power: "+mov.BP + "<br>";
+	}
+	else{
+		strinfo = strinfo+"Power: -<br>";
+	}
+	if(mov.Accuracy!=null){
+		strinfo = strinfo+"Accuracy: "+mov.Accuracy+"<br>";
+	}
+	else{
+		strinfo = strinfo+"Accuracy: -<br>";
+	}
+	strinfo = strinfo + "Type: "+mov.type+"<br><br>"+mov.Name+" "+mov.Description;
+	document.getElementById("info").innerHTML = strinfo;
+	
+}
+</script>
+
+<noscript>Sorry, your browser does not support JavaScript!</noscript>
+</body>
+</html>

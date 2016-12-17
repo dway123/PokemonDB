@@ -40,10 +40,9 @@
 
 <script>
 var Move = {"move": [
-	{"No":1,"Name" : "Hyper Beam", "type":"Normal", "BP":150, "Accuracy":90
-	/*,"move1": "Leaf Blade", "move2" : "Cross Poison", "move3" : "Wood Hammer", "move4" : "Vine Whip"*/},
-	{"No":2,"Name" : "Hypnosis", "type": "Psychic", "BP": null, "Accuracy":60
-        /*,"move1": "Nuzzle", "move2": "Thunderbolt", "move3": "Volt Tackle","move4" : "Nasty Plot"*/}
+	{"No":1,"Name" : "Hyper Beam", "type":"Normal", "BP":150, "Accuracy":90},
+	{"No":2,"Name" : "Hypnosis", "type": "Psychic", "BP": null, "Accuracy":60},
+	{"No":3,"Name" : "Aerial Ace", "type": "Flying", "BP":60, "Accuracy": null}
     ]
 };
 console.log(Move);
@@ -57,7 +56,11 @@ for(var i = 0; i<Move.move.length; i++){
 
 	var nam = document.createElement("td");
 	entr.appendChild(nam);
-	nam.innerHTML = Move.move[i].Name;
+	var link = document.createElement("a");
+	link.setAttribute("href","move.html");
+	link.setAttribute("onclick","move("+i+");");
+	nam.appendChild(link);
+	link.innerHTML = Move.move[i].Name;
 
 	var type = document.createElement("td");
 	entr.appendChild(type);
@@ -82,6 +85,9 @@ for(var i = 0; i<Move.move.length; i++){
 	}
 
 	
+}
+function move(mid){
+	sessionStorage.move = mid;
 }
 </script>
 </div>
