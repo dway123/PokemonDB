@@ -1,6 +1,5 @@
 /*
  * Uses one of several SQL queries in order to retrieve query data, and convert that to JSON format
- * TODO: test all queries on Seb's server
  * TODO: create event listener (Swing?)
  * TODO: coordinate with frontend layer
  * TODO: more SQL statements (ex. sort by *, order by TV episodes of appearance, which Pokemon is this Pokemon good against?)
@@ -11,11 +10,80 @@
  * check configuration data url/user/password for correctness
  */
 
+
+
+
 import java.sql.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class QueryHandlingController {
+import java.io.*;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class QueryHandlingController extends HttpServlet {
+	//DATABASE CONFIGURATION DATA
+//    private static final String url = "jdbc:mysql://199.98.20.192:5222/PokemonDB?autoReconnect=true&useSSL=false";
+//    private static final String user = "root";
+//    private static final String password = "machamp";
+    
+    private static final String url = "jdbc:mysql://localhost/PokemonDB?autoReconnect=true&useSSL=false";
+    private static final String user = "root";
+    private static final String password = "Machamp";
+	
+	//
+	public JSONArray getResultsFromDB(String req) throws Exception{
+		Connection conn = null;
+		
+        conn = DriverManager.getConnection(url, user, password);
+        //System.out.println("DB connection Success");
+		
+		Statement stmt = conn.createStatement();
+		String query;
+		
+		//ALL EXISTING SQL STATEMENTS BELOW FOR CONVENIENCE
+		//query = getSelectAllQueryString("Types");
+		//query = getPokemonWithMoveQueryString("Thunder Shock");
+		query = getMovesForPokemonQueryString("Pikachu");
+		//query = getEpisodesWithPokemonQueryString("Pikachu");
+		//query = getPokemonInEpisodeQueryString(1,1);
+		//query = getPokemonTypesQueryString("Pikachu");
+		
+		
+		System.out.println(query +  "\n");
+		ResultSet resultSet = stmt.executeQuery(query);
+		
+		//printResultSet(resultSet);
+		JSONArray jsonArray = convertResultSetIntoJSON(resultSet);
+		return jsonArray;
+	}
+	
+	
+	//HTTP POST
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
+		String msg = request.getParameter("input");
+		try {
+			//CHECK INPUT
+			System.out.println("Recieved HTTP POST with input = " + msg);
+			//JSONParser parser = new JSONParser();
+			//JSONObject json = (JSONObject) parser.parse(msg);			
+			
+			//REQ RESULTS FROM DB
+			JSONArray results = getResultsFromDB(msg);
+			System.out.println("Sending: " + results.toString());			
+			
+			//SEND OUTPUT
+			response.setContentType("application/json");
+		    PrintWriter responseprinter = response.getWriter();
+		    responseprinter.println(results); 
+		    responseprinter.close();
+		} catch (Exception e) {
+            e.printStackTrace();
+        }
+	}
+	
 	//QUERIES
 	static String getSelectAllQueryString(String table_name){
 		return "SELECT * FROM " + table_name;
@@ -83,31 +151,7 @@ public class QueryHandlingController {
         }
         return jsonArray;
     }
-	
-	//Print JSON
-	private static void printResultSet(ResultSet resultSet) throws Exception{
-		ResultSetMetaData rsmd = resultSet.getMetaData();
-		
-		int columnsNumber = rsmd.getColumnCount();
-		for (int i = 1; i <= columnsNumber; i++) {
-			System.out.print(rsmd.getColumnName(i) + "  ");
-		}
-		System.out.println("");
-		
-		while (resultSet.next()) {
-		    for (int i = 1; i <= columnsNumber; i++) {
-		        if (i > 1) System.out.print(",  ");
-		        String columnValue = resultSet.getString(i);
-		        System.out.print(columnValue + "\t");
-		    }
-		    System.out.println("");
-		}
-	}
-	
-	//DATABASE CONFIGURATION DATA
-    private static final String url = "jdbc:mysql://localhost/PokemonDB?autoReconnect=true&useSSL=false";
-    private static final String user = "root";
-    private static final String password = "Machamp";
+
     
     //MAIN
 	public static void main(String[] args) throws Exception {
