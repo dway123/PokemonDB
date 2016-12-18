@@ -59,11 +59,19 @@ for(var i = 0; i<Episodes.episodes.length; i++){
 	
 	var title = document.createElement("td");
 	entr.appendChild(title);
-	title.innerHTML = Episodes.episodes[i].Title;
+	
+	var link = document.createElement("a");
+	link.setAttribute("href","episode.html");
+	link.setAttribute("onclick","episode("+i+");");
+	title.appendChild(link);
+	link.innerHTML = Episodes.episodes[i].Title;
 	
 	var date = document.createElement("td");
 	entr.appendChild(date);
 	date.innerHTML = Episodes.episodes[i].ReleaseDate;
+}
+function episode(num){
+	sessionStorage.epid = num;
 }
 </script>
 </div>

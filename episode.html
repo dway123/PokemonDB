@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<meta charset="utf-8"/>
+<html>
+<head>
+<title>Pokemon Database</title>
+<link rel="stylesheet" type="text/css" href="pstyle.css" />
+</head>
+<body>
+<div class="title">
+<h1>Welcome to the Pokemon Database!</h1>
+</div>
+<div class="menu">
+<ul>
+	<li><img class="pball" src="pokeball.png"></img></li>
+	<li class="menuitem"><a href="table.html">Pokemon</a></li>
+	<li class="menuitem"><a href="table2.html">Moves</a></li>
+	<li class="menuitem"><a href="table3.html">Episodes</a></li>
+	<li><img class="pball" src="pokeball.png"></img></li>
+</ul>
+</div>
+<div class="main">
+<form>
+  <input type="text" name="search" placeholder="Search..">
+</form>
+<p id="epis"></p>
+<p id="info"></p>
+</div>
+<!-- Main Script: -->
+<script>
+var Episodes = {"episodes": [
+	{"Season": 1, "EpisNo":1, "Title":"Pokemon, I Choose You!", "ReleaseDate": "September 8, 1998",
+	"Synopsis": "Ash Ketchum is finally 10 years old, old enough to become a Pokémon Trainer. He wakes up late on the day he is supposed to receive his first Pokémon at Professor Oak's lab, however, and arrives to discover all the Pokémon are gone. Ash has no choice but to take a naughty Pikachu. Pikachu will not listen to Ash or go inside its Poké Ball, so Ash must drag it along with a rope. After many failed attempts at capturing some Pokémon, Ash throws a rock and hits a Spearow. The Spearow gets angry and the entire flock starts chasing Ash and Pikachu. They run away from the Spearow, borrowing a bike from a red-haired girl to escape, but when they cannot go any farther, Ash uses his body to shield Pikachu from the attacking Pokémon. Pikachu realizes how much Ash cares for him and uses a powerful electric attack to drive the Spearow away, destroying the bicycle in the process as well."},
+	{"Season": 1, "EpisNo":2, "Title":"Pokemon Emergency!", "ReleaseDate": "September 9, 1998",
+	"Synopsis": "Finally arriving in Viridian City, Ash is cornered by Officer Jenny who asks why he is carrying Pikachu instead of having it in a Pokéball. After explaining, Jenny takes Ash to the Pokémon Center where Nurse Joy begins treatment on the injured Pikachu. Before Pikachu's treatment finishes, however, Ash is interrupted by Misty, the girl who Ash took the bike from, who vows to stick with Ash until he pays her back for destroying her bike. The Pokémon Center is then attacked by Jessie, James, and their talking Meowth, members of the villainous Team Rocket, seeking to steal all of the infirm Pokémon. Ash's Pikachu and the Pokémon Center's many Pikachu manage to defeat Team Rocket by shocking them, sending them \"blasting off\" into the sky for the first time. "},
+	{"Season": 2, "EpisNo":1, "Title":"Pallet Party Panic", "ReleaseDate": "December 4, 1999",
+	"Synopsis": "Ash celebrates making it to the Kanto League back at Pallet Town. However, Team Rocket steal Pikachu and try to ruin the party, but they're defeated by Charizard. Later on, Professor Oak asks Ash to go to Valencia Island to bring the mysterious Pokéball (GS Ball) from Professor Ivy. Ash prepares for his journey to Valencia Island, they are attacked by a group of Spearow and a very angry Fearow. Ash realizes that the Spearow Ash threw a rock at in \"Pokémon, I Choose You!\" is that Fearow, and soon carries Ash and Pikachu away. Then later, Ash's Pidgeotto evolves into Pidgeot, and is released to protect wild Pidgey and Pidgeotto. Ash says it only should stay there until he comes back from Valencia Island."}
+    ]
+};
+/*var str = JSON.stringify(Move);
+console.log(Move);
+document.getElementById("move").innerHTML = Move.move[0].Name;*/
+var num = -1;
+if(sessionStorage.epid!=null){
+	num = sessionStorage.epid;
+	var epi = Episodes.episodes[num];
+	document.getElementById("epis").innerHTML = "Season "+epi.Season+", Episode "+epi.EpisNo + "\n";
+	var strinfo = ""+epi.Title+"<br>";
+	strinfo = strinfo + "Release Date: "+epi.ReleaseDate+"<br><br>";
+	strinfo = strinfo + "Summary: "+epi.Synopsis;
+	document.getElementById("info").innerHTML = strinfo;
+	
+}
+</script>
+
+<noscript>Sorry, your browser does not support JavaScript!</noscript>
+</body>
+</html>
