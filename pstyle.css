@@ -1,12 +1,13 @@
 body {
 font-family: Symbol, sans-serif;
 font-size: 1.8em;
-background-color: gray;
+background-color: #f2f2f2;
 margin-left: 3%;
 margin-right: 3%;
+/*border: ridge;*/
 }
 .main{
-background-color: #f2f2f2;
+background-color: #cdcd;
 }
 h1{
 margin:0;
@@ -70,6 +71,7 @@ text-decoration: none;
 background-color: #b30000;
 }
 table {
+    border-style:outset;
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
