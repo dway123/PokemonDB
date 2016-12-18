@@ -127,8 +127,8 @@ public class QueryHandlingController {
 		
 		//ALL EXISTING SQL STATEMENTS BELOW FOR CONVENIENCE
 		//query = getSelectAllQueryString("Types");
-		query = getPokemonWithMoveQueryString("Thunder Shock");
-		//query = getMovesForPokemonQueryString("Pikachu");
+		//query = getPokemonWithMoveQueryString("Thunder Shock");
+		query = getMovesForPokemonQueryString("Pikachu");
 		//query = getEpisodesWithPokemonQueryString("Pikachu");
 		//query = getPokemonInEpisodeQueryString(1,1);
 		//query = getPokemonTypesQueryString("Pikachu");
