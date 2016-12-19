@@ -41,13 +41,48 @@
 </table>
 
 <script>
+/*function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    /*xmlHttp.send( "train" );*/
+ //   return xmlHttp.responseText;
+//}
+function httpGet(theUrl)
+{
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            createDiv(xmlhttp.responseText);
+        }
+    }
+    xmlhttp.open("GET", "jsonp", theUrl, false);
+    xmlhttp.send();    
+}
+function createDiv(responsetext)
+{
+    var _body = document.getElementsByTagName('body')[0];
+    var _div = document.createElement('div');
+    _div.innerHTML = responsetext;
+    _body.appendChild(_div);
+}
 var Pokemon = {"pokemon": [
-	{"No":1,"Name" : "Bulbasaur", "type1":"Grass", "type2":"Poison", "Ability":"Wonder Guard"
+	{"No":1,"pname" : "Bulbasaur", "type1":"Grass", "type2":"Poison", "Ability":"Wonder Guard"
 	/*,"move1": "Leaf Blade", "move2" : "Cross Poison", "move3" : "Wood Hammer", "move4" : "Vine Whip"*/},
-	{"No":35,"Name" : "Pikachu", "type1": "Electric", "type2": null, "Ability":"Static"
+	{"No":25,"Name" : "Pikachu", "type1": "Electric", "type2": null, "Ability":"Static"
         /*,"move1": "Nuzzle", "move2": "Thunderbolt", "move3": "Volt Tackle","move4" : "Nasty Plot"*/}
     ]
 };
+httpGet("http://199.98.20.192:8080/PokemonServlet/PokemonServlet?in=Pokemon");
 console.log(Pokemon);
 for(var i = 0; i<Pokemon.pokemon.length; i++){
 	var entr = document.createElement("tr");

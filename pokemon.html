@@ -20,20 +20,37 @@
 	<li><img class="emolga" src="emolga.png"></img></li>
 </ul>
 </div>
-<div class="main">
+<div class="main" id="m">
 <form>
   <input type="text" name="search" placeholder="Search..">
 </form>
 <p id="pokemon"></p>
 <p id="info"></p>
+<!--<table id="learnset">
+  <tr>
+    <th>#</th>
+    <th>Move</th>
+    <th>Type</th>
+    <th>Power</th>
+    <th>Accuracy</th>
+  </tr>
+</table>-->
+
 </div>
+
 <!-- Main Script: -->
 <script>
 var Pokemon = {"pokemon": [
 	{"No":1,"Name" : "Bulbasaur", "type1":"Grass", "type2":"Poison", "Ability":"Wonder Guard"
 	/*,"move1": "Leaf Blade", "move2" : "Cross Poison", "move3" : "Wood Hammer", "move4" : "Vine Whip"*/},
-	{"No":35,"Name" : "Pikachu", "type1": "Electric", "type2": null, "Ability":"Static"
+	{"No":25,"Name" : "Pikachu", "type1": "Electric", "type2": null, "Ability":"Static"
         /*,"move1": "Nuzzle", "move2": "Thunderbolt", "move3": "Volt Tackle","move4" : "Nasty Plot"*/}
+    ]
+};
+var Move = {"move": [
+	{"No":1,"Name" : "Thunder", "type":"Electric", "BP":120, "Accuracy":70},
+	{"No":2,"Name" : "Thunder Wave", "type": "Electric", "BP": null, "Accuracy":60},
+	{"No":3,"Name" : "Quick Attack", "type": "Normal", "BP":40, "Accuracy": null}
     ]
 };
 /*var str = JSON.stringify(Pokemon);
@@ -51,9 +68,69 @@ if(sessionStorage.pokemon!=null){
 	else{
 		strinfo = strinfo+"Type: "+poke.type1+"<br>";
 	}
-	strinfo = strinfo + "Ability: "+poke.Ability+"<br><br>"+poke.Name+" is a lovely pokemon. It is not, however, Mega Rayquaza.";
+	strinfo = strinfo + "Ability: "+poke.Ability+"<br><br>"+poke.Name+" is a lovely pokemon. It is not, however, Mega Rayquaza."
+		+"<br><br>Learnset:";
 	document.getElementById("info").innerHTML = strinfo;
 	
+var tbl = document.createElement("table");
+tbl.setAttribute("id","learnset");
+document.getElementById("m").appendChild(tbl);
+var entr = document.createElement("tr");
+document.getElementById("learnset").appendChild(entr);
+var t1 = document.createElement("th");
+entr.appendChild(t1);
+t1.innerHTML = "#";
+var t2 = document.createElement("th");
+entr.appendChild(t2);
+t2.innerHTML = "Move";
+var t3 = document.createElement("th");
+entr.appendChild(t3);
+t3.innerHTML = "Type";
+var t4 = document.createElement("th");
+entr.appendChild(t4);
+t4.innerHTML = "Power";
+var t5 = document.createElement("th");
+entr.appendChild(t5);
+t5.innerHTML = "Accuracy";
+
+for(var i = 0; i<Move.move.length; i++){
+	var entr = document.createElement("tr");
+	document.getElementById("learnset").appendChild(entr);
+
+	var num = document.createElement("td");
+	entr.appendChild(num);
+	num.innerHTML = Move.move[i].No;
+
+	var nam = document.createElement("td");
+	entr.appendChild(nam);
+	var link = document.createElement("a");
+	link.setAttribute("href","move.html");
+	link.setAttribute("onclick","move("+i+");");
+	nam.appendChild(link);
+	link.innerHTML = Move.move[i].Name;
+
+	var type = document.createElement("td");
+	entr.appendChild(type);
+	type.innerHTML = Move.move[i].type;
+
+	var power = document.createElement("td");
+	entr.appendChild(power);
+	if(Move.move[i].BP!=null){
+		power.innerHTML = Move.move[i].BP;
+	}
+	else{
+		power.innerHTML = "-";
+	}
+
+	var acc = document.createElement("td");
+	entr.appendChild(acc);
+	if(Move.move[i].Accuracy!=null){
+		acc.innerHTML = Move.move[i].Accuracy;
+	}
+	else{
+		acc.innerHTML = "-";
+	}
+	}
 }
 </script>
 
