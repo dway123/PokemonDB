@@ -1,6 +1,6 @@
 /*
  * Uses one of several SQL queries in order to retrieve query data, and convert that to JSON format
- * TODO: create event listener (Swing?)
+ * TODO: create event listener
  * TODO: coordinate with frontend layer
  * TODO: more SQL statements (ex. sort by *, order by TV episodes of appearance, which Pokemon is this Pokemon good against?)
  * TODO: improve OOP design
@@ -14,17 +14,23 @@
 
 
 import java.sql.*;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.io.*;
+
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@WebServlet("/QueryHandlingController")
 public class QueryHandlingController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 	//DATABASE CONFIGURATION DATA
+	
 //    private static final String url = "jdbc:mysql://199.98.20.192:5222/PokemonDB?autoReconnect=true&useSSL=false";
 //    private static final String user = "root";
 //    private static final String password = "machamp";
@@ -33,6 +39,14 @@ public class QueryHandlingController extends HttpServlet {
     private static final String user = "root";
     private static final String password = "Machamp";
 	
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public QueryHandlingController() {
+        super();
+        // Auto-generated constructor stub
+    }
+    
 	//
 	public JSONArray getResultsFromDB(String req) throws Exception{
 		Connection conn = null;
@@ -60,7 +74,9 @@ public class QueryHandlingController extends HttpServlet {
 		return jsonArray;
 	}
 	
-	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	//HTTP POST
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
 		String msg = request.getParameter("input");
@@ -154,36 +170,36 @@ public class QueryHandlingController extends HttpServlet {
 
     
     //MAIN
-	public static void main(String[] args) throws Exception {
-		
-		Connection conn = null;
-		
-		try {
-            conn = DriverManager.getConnection(url, user, password);
-            //System.out.println("DB connection Success");
-	 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-		
-		Statement stmt = conn.createStatement();
-		String query;
-		
-		//ALL EXISTING SQL STATEMENTS BELOW FOR CONVENIENCE
-		//query = getSelectAllQueryString("Types");
-		//query = getPokemonWithMoveQueryString("Thunder Shock");
-		query = getMovesForPokemonQueryString("Pikachu");
-		//query = getEpisodesWithPokemonQueryString("Pikachu");
-		//query = getPokemonInEpisodeQueryString(1,1);
-		//query = getPokemonTypesQueryString("Pikachu");
-		
-		
-		System.out.println(query +  "\n");
-		ResultSet resultSet = stmt.executeQuery(query);
-		
-		//printResultSet(resultSet);
-		JSONArray jsonArray = convertResultSetIntoJSON(resultSet);
-		System.out.println(jsonArray.toString());
-        
-    }
+//	public static void main(String[] args) throws Exception {
+//		
+//		Connection conn = null;
+//		
+//		try {
+//            conn = DriverManager.getConnection(url, user, password);
+//            //System.out.println("DB connection Success");
+//	 
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//		
+//		Statement stmt = conn.createStatement();
+//		String query;
+//		
+//		//ALL EXISTING SQL STATEMENTS BELOW FOR CONVENIENCE
+//		//query = getSelectAllQueryString("Types");
+//		//query = getPokemonWithMoveQueryString("Thunder Shock");
+//		query = getMovesForPokemonQueryString("Pikachu");
+//		//query = getEpisodesWithPokemonQueryString("Pikachu");
+//		//query = getPokemonInEpisodeQueryString(1,1);
+//		//query = getPokemonTypesQueryString("Pikachu");
+//		
+//		
+//		System.out.println(query +  "\n");
+//		ResultSet resultSet = stmt.executeQuery(query);
+//		
+//		//printResultSet(resultSet);
+//		JSONArray jsonArray = convertResultSetIntoJSON(resultSet);
+//		System.out.println(jsonArray.toString());
+//        
+//    }
 }
